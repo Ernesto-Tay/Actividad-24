@@ -17,7 +17,10 @@ def suma(val):
         return val + suma(val - 1)
 
 def fibonacci(val):
-    if val<=0:
+    if val<0:
+        print("No se puede sacar un valor de fibonacci negativo")
+        return 0
+    elif val==0:
         return 0
     elif val==1:
         return 1
@@ -28,10 +31,12 @@ def apariciones(palabra, letra):
     if letra not in palabra:
         return 0
     else:
-        if palabra.count(letra) == 1:
-            return 1
+        if palabra == "":
+            return 0
+        elif palabra[0] == letra:
+            return 1 + apariciones(palabra[1:], letra)
         else:
-            return 1+ apariciones(palabra, letra)
+            return apariciones(palabra[1:], letra)
 
 def inversa(palabra, dic_start=None, dic_end=None, lista = False):
     if not lista:
@@ -65,27 +70,50 @@ while True:
         case "1":
             try:
                 val = int(input("Ingrese un valor: "))
-                if factorial(val).isdigit():
-                    print(f"El factorial de {val} es {factorial(val)}")
+                print(f"El factorial de {val} es {factorial(val)}")
             except ValueError:
-                print("Debe ingresar un número")
+                print("Debe ingresar un número entero")
 
         case "2":
             try:
                 val = int(input("Ingrese el valor máximo de la suma: "))
-                if suma(val).isdigit():
-                    print(f"La suma recursiva de {val} es {suma(val)}")
+                print(f"La suma recursiva de {val} es {suma(val)}")
             except ValueError:
-                print("Debe ingresar un número")
+                print("Debe ingresar un número entero")
 
         case "3":
-            pass
+            try:
+                val = int(input("Ingrese el valor de la secuencia de fibonacci que desea encontrar: "))
+                print(f"El valor {val} de la secuencia de fibonacci es {fibonacci(val)}")
+            except ValueError:
+                print("Debe ingresar un número entero")
+
         case "4":
-            pass
+            try:
+                palabra = input("Ingrese una palabra: ")
+                letra = input("Ingrese la letra a contar: ")
+                print(f"La letra {letra} aparece {apariciones(palabra, letra)} veces en `{palabra}`")
+            except Exception as e:
+                print("Error inesperado",e)
+
         case "5":
-            pass
+            try:
+                palabra = input("Ingrese una palabra: ")
+                print(f"Si invertimos `{palabra}`, sería `{inversa(palabra)}`")
+            except Exception as e:
+                print("Error inesperado",e)
+
         case "6":
-            pass
+            try:
+                num = int(input("Ingrese un número: "))
+                exponente = int(input("Ingrese el exponente: "))
+                if exponente <0:
+                    print("El exponente debe ser mayor a 0")
+                else:
+                    print(f"{num} a la {exponente} es: {potencia(num, exponente)}")
+            except ValueError:
+                print("Ingrese números enteros")
+
         case "7":
             print("Saliendo...")
             break
