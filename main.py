@@ -43,6 +43,15 @@ def inversa(palabra, letra_start = None):
     else:
         letra_start = letra_start.capitalize()
 
+def potencia(base, exponente):
+    if exponente == 1:
+        return base
+    elif exponente == 0:
+        return 1
+    else:
+        return base * potencia(base, exponente - 1)
+
+
 while True:
     print("\n\n---------------MENÚ---------------\n1. Calcular un factorial\n2. realizar suma recursiva\n3. calcular un número de fibonacci\n4. calcular las apariciones de una letra en una palabra\n5. invertir una cadena de texto\n6. calcular la potencia de un número\n7. Salir")
     select = input("Ingrese una opción: ")
