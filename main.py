@@ -16,14 +16,13 @@ def suma(val):
     else:
         return val + suma(val - 1)
 
-def fibonacci(val1, val2 = None):
-    if val1 < 1:
-        print("No se puede calcular un número de fibonacci negativo")
-        return
-    elif val1 == 1 or val1 == 2:
+def fibonacci(val):
+    if val<=0:
+        return 0
+    elif val==1:
         return 1
     else:
-        pass #Falta terminar la sencuencia
+        return fibonacci(val - 1) + fibonacci(val - 2)
 
 def apariciones(palabra, letra):
     if letra not in palabra:
@@ -34,14 +33,21 @@ def apariciones(palabra, letra):
         else:
             return 1+ apariciones(palabra, letra)
 
-def inversa(palabra, letra_start = None):
-    divisor = palabra.lower.split()
-    if not letra_start:
-        letra_start = divisor[0]
-    if palabra.count(letra_start) == 1:
-        pass
-    else:
-        letra_start = letra_start.capitalize()
+def inversa(palabra, dic_start=None, dic_end=None, lista = False):
+    if not lista:
+        palabra = list(palabra)
+    if dic_start is None and dic_end is None:
+        dic_start = 0
+        dic_end = len(palabra)-1
+
+    if dic_start >= dic_end:
+        return "".join(palabra)
+
+    a = palabra[dic_start]
+    b = palabra[dic_end]
+    palabra[dic_start] = b
+    palabra[dic_end] = a
+    return inversa(palabra, dic_start + 1, dic_end - 1, True)
 
 def potencia(base, exponente):
     if exponente == 1:
@@ -57,9 +63,21 @@ while True:
     select = input("Ingrese una opción: ")
     match select:
         case "1":
-            pass
+            try:
+                val = int(input("Ingrese un valor: "))
+                if factorial(val).isdigit():
+                    print(f"El factorial de {val} es {factorial(val)}")
+            except ValueError:
+                print("Debe ingresar un número")
+
         case "2":
-            pass
+            try:
+                val = int(input("Ingrese el valor máximo de la suma: "))
+                if suma(val).isdigit():
+                    print(f"La suma recursiva de {val} es {suma(val)}")
+            except ValueError:
+                print("Debe ingresar un número")
+
         case "3":
             pass
         case "4":
