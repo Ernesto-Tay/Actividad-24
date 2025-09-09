@@ -42,3 +42,25 @@ def inversa(palabra, letra_start = None):
         pass
     else:
         letra_start = letra_start.capitalize()
+
+while True:
+    print("\n\n---------------MENÚ---------------\n1. Calcular un factorial\n2. realizar suma recursiva\n3. calcular un número de fibonacci\n4. calcular las apariciones de una letra en una palabra\n5. invertir una cadena de texto\n6. calcular la potencia de un número\n7. Salir")
+    select = input("Ingrese una opción: ")
+    match select:
+        case "1":
+            pass
+        case "2":
+            pass
+        case "3":
+            pass
+        case "4":
+            pass
+        case "5":
+            pass
+        case "6":
+            pass
+        case "7":
+            print("Saliendo...")
+            break
+        case _:
+            print("Opción inválida, intente nuevamente")
